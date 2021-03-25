@@ -1,0 +1,13 @@
+FROM node:current-buster-slim
+
+WORKDIR /hexo
+VOLUME ["/hexo"]
+
+EXPOSE 4000 
+
+RUN npm install -g hexo-cli
+
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/bin/bash"]
