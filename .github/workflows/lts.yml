@@ -48,8 +48,22 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-      # 编译 Alpine lts推送到 dockerhub
+      # 编译 buster-slim lts推送到 dockerhub
       - name: Build and push Alpine
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: lts/Dockerfile.debian
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+          tags: |
+            ryjer/hexo:lts-buster-slim
+            ryjer/hexo:lts-slim
+
+      # 编译 alpine lts 推送到 dockerhub
+      - name: Build and push Buster-slim
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -62,20 +76,6 @@ jobs:
             ryjer/hexo:lts-alpine3.13
             ryjer/hexo:lts-alpine
             ryjer/hexo:lts
-
-      # 编译 buster-slim 推送到 dockerhub
-      - name: Build and push Buster-slim
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: lts/Dockerfile.debian
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
-          tags: |
-            ryjer/hexo:lts-buster-slim
-            ryjer/hexo:lts-slim
        
       # 处理缓存无限增大问题的临时修复，以防出现问题。（等待github官方修复）
       - name: Move cache
