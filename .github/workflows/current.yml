@@ -9,7 +9,7 @@ on:
     paths:
     - current/Dockerfile.alpine
     - current/Dockerfile.debian
-    - current/docker-entrypoint.sh
+    - docker-entrypoint.sh
   pull_request:
     branches: [ master ]
 
