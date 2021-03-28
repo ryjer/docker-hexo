@@ -1,4 +1,4 @@
-FROM node:lts-stretch-slim
+FROM node:alpine3.13
 
 WORKDIR /hexo
 VOLUME ["/hexo"]
@@ -6,12 +6,9 @@ VOLUME ["/hexo"]
 EXPOSE 4000 
 
 RUN npm install -g hexo-cli \
-    && apt-get update \
-    && apt-get install git -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && apk add --no-cache git openssh
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD [ "/bin/bash" ]
+CMD ["/bin/ash"]
