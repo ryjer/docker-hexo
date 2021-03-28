@@ -6,7 +6,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Usage
-Use this image in docker
+Use hexo in docker
 ### 1. Pull image
 ```bash
 docker pull wryjer/hexo
