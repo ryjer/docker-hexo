@@ -1,4 +1,9 @@
-# docker-Hexo
+# docker-hexo
+
+![buildx](https://github.com/ryjer/docker-hexo/workflows/buildx/badge.svg)
+[![Docker Stars](https://img.shields.io/docker/stars/ryjer/hexo.svg)](https://hub.docker.com/r/ryjer/hexo/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ryjer/hexo.svg)](https://hub.docker.com/r/ryjer/hexo/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Usage
 Use this image in docker
