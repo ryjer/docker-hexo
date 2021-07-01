@@ -1,4 +1,4 @@
-# docker-hexo
+# docker-hexo 封装在 docker 镜像中的 Hexo 博客
 
 ![buildx](https://github.com/ryjer/docker-hexo/workflows/buildx/badge.svg)
 [![Docker Stars](https://img.shields.io/docker/stars/ryjer/hexo.svg)](https://hub.docker.com/r/ryjer/hexo/)
@@ -9,7 +9,7 @@
 Use hexo in docker
 ### 1. Pull image
 ```bash
-docker pull wryjer/hexo
+docker pull ryjer/hexo
 ```
 ### 2. Learn hexo
 Read the basic usage of Hexo [Basic Usage](https://hexo.io/docs/commands.html)
@@ -17,21 +17,21 @@ Read the basic usage of Hexo [Basic Usage](https://hexo.io/docs/commands.html)
 ```bash
 docker run --rm -it \
   -v $PWD:/hexo \
-  wryjer/hexo \
+  ryjer/hexo \
   hexo init
 ```
 ### 4. hexo new
 ```bash
 docker run --rm -it \
   -v $PWD:/hexo \
-  wryjer/hexo \
+  ryjer/hexo \
   hexo new [layout] <title>
 ```
 ### 5. hexo generate
 ```bash
 docker run --rm -it \
   -v $PWD:/hexo \
-  wryjer/hexo \
+  ryjer/hexo \
   hexo generate
 ```
 ### 6. hexo server
@@ -39,7 +39,7 @@ docker run --rm -it \
 docker run --name hexo -d \
   -v $PWD:/hexo \
   -p 80:4000 \
-  wryjer/hexo \
+  ryjer/hexo \
   hexo server
 ```
 ### More
@@ -51,11 +51,11 @@ Read the basic usage of Hexo [Basic Usage](https://hexo.io/docs/commands.html)
 你需要将 hexo 博客目录(该目录内会有 **_config.yml等文件**和**source themes scaffolds 等文件夹**)映射到 docker 容器中的 **/hexo** 目录中，如果你需要hexo 作为服务器运行或者预览结果的话。还需要将端口映射到docker容器的 **4000** 端口上。
 #### 一、拉取镜像 
 ```bash
-docker pull wryjer/hexo
+docker pull ryjer/hexo
 ```
 **问题：docker 中的npm 软件源为默认设置，可能会下载缓慢，你可以选择预先配置了淘宝npm源的镜像版本**
 ```bash
-docker pull wryjer/hexo:tb
+docker pull ryjer/hexo:tb
 ```
 ### 二、进入 hexo 博客目录
 ``` bash
@@ -68,7 +68,7 @@ cd /root/hexo
 # 使用相对路径，在当前目录下进行 hexo init 初始化
 docker run --rm -it \
   -v $PWD:/hexo \
-  wryjer/hexo:tb \
+  ryjer/hexo:tb \
   hexo init
 ```
 #### 四、hexo new 新建文章
@@ -76,7 +76,7 @@ docker run --rm -it \
 # 使用相对路径，需要进入hexo 博客目录
 docker run --rm -it \
   -v $PWD:/hexo \
-  wryjer/hexo:tb \
+  ryjer/hexo:tb \
   hexo new "文章标题"
 ```
 #### 五、hexo g 生成静态文件
@@ -85,7 +85,7 @@ docker run --rm -it \
 # 使用相对路径，需进入一个hexo博客的目录
 docker run --rm -it \
   -v $PWD:/hexo \
-  wryjer/hexo:tb \
+  ryjer/hexo:tb \
   hexo g
 ```
 #### 六、hexo s 启动服务器
@@ -95,7 +95,7 @@ hexo s 会将映射目录下的 public 目录（首先你要有public）挂载�
 docker run --name hexo -d \
   -v $PWD:/hexo \
   -p 80:4000 \
-  wryjer/hexo:tb \
+  ryjer/hexo:tb \
   hexo s
 ```
-#### 其他：本镜像安装了hexo 和 git，需要除git之外其他软件包运行的命令可能会无法运行。
+#### 其他：本镜像安装了hexo 和 git，需要除git之外其他软件包的命令可能会无法运行。
